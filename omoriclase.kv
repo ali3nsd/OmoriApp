@@ -1,7 +1,32 @@
+#:import utils kivy.utils
+
+
+
+
+
 WindowManager:
     Inicio:
     pantalla1:
     pantalla2
+
+
+<Background_label@Label>:
+    background_color: 0,0,0,0
+    width: self.texture_size[0]
+    size_hint: None, 0.5
+
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+
+
+
+
+
 
 <Inicio>:
     name: "main"
@@ -26,15 +51,43 @@ WindowManager:
             color: "#cfa8ff"
             font_size : 18
 
-        Button:
-            id: btn_inicio
-            text: "ir a pantalla 1"
-            font_size: "18"
-            size_hint : 0.15, 0.15
-            color: "#8a63ff"
-            on_release:
-                app.root.current = "pantalla1"
-                root.manager.transition.direction = "left"
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+
+            Background_label:
+
+                text: "etiquetaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                color: "#6622ae"
+                background_color: utils.get_color_from_hex("#8154c1")
+
+
+
+
+
+        
+            
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+            
+
+            Button:
+                id: btn_inicio
+                text: "ir a pantalla 1"
+                font_size: "18"
+                size: (150, 150)
+                size_hint : None, 0.20
+                color: "#8a63ff"
+                background_color: utils.get_color_from_hex("#3e0989")
+                background_normal: ''
+                on_press : app.iniciar()
+                on_release:
+                    app.root.current = "pantalla1"
+                    root.manager.transition.direction = "left"
+
+
+
 
 
 <pantalla1>:
@@ -58,15 +111,21 @@ WindowManager:
             color: "#ddc1ff"
             font_size : 18
 
-        Button:
-            id: btn_1
-            text: "un picnic?"
-            font_size: "18"
-            size_hint : 0.15, 0.15
-            color: "#5d0089"
-            on_release:
-                app.root.current = "pantalla2"
-                root.manager.transition.direction = "right"
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+
+            Button:
+                id: btn_1
+                text: "un picnic?"
+                font_size: "18"
+                size_hint : 0.15, 0.15
+                color: "#c244fc"
+                background_color: utils.get_color_from_hex("#3e0989")
+                background_normal: ''
+                on_release:
+                    app.root.current = "pantalla2"
+                    root.manager.transition.direction = "right"
 
 
 <pantalla2>:
@@ -89,10 +148,33 @@ WindowManager:
             color: "#ddc1ff"
             font_size : 18
 
-        Button:
-            id: btn_1
-            text: ":3"
-            font_size: "18"
-            size_hint : 0.15, 0.15
-            color: "#5d0089"
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'bottom'
+
+            BoxLayout:
+                orientation: "horizontal"
+                padding: 30
+                spacing: 10
+
+
+                Button:
+                    id: btn_2
+                    text: ":3"
+                    font_size: "18"
+                    size_hint : 0.15, 0.15
+                    color: "#c244fc"
+                    background_color: utils.get_color_from_hex("#3e0989")
+                    background_normal: ''
             
+                Button:
+                    id: btn_3
+                    text: "regresar?"
+                    font_size: "18"
+                    size_hint : 0.15, 0.15
+                    color: "#ae00ff"
+                    background_color: utils.get_color_from_hex("#3e0989")
+                    background_normal: ''
+                    on_release:
+                        app.root.current = "main"
+                        root.manager.transition.direction = "right"

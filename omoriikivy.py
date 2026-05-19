@@ -25,7 +25,8 @@ class omoriiapp(App):
     def build(self):
         return kv
     
-
+    def iniciar(self):
+        print("bienvenido")
 
 
 
