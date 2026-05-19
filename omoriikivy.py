@@ -13,6 +13,12 @@ class pantalla1(Screen):
 class pantalla2(Screen):
     pass
 
+class password(Screen):
+    pass
+
+class correcto(Screen):
+    pass
+
 class WindowManager(ScreenManager):
     pass
 

@@ -7,7 +7,9 @@
 WindowManager:
     Inicio:
     pantalla1:
-    pantalla2
+    pantalla2:
+    password:
+    correcto:
 
 
 <Background_label@Label>:
@@ -144,7 +146,7 @@ WindowManager:
 
         Label:
             markup: True
-        
+            
             color: "#ddc1ff"
             font_size : 18
 
@@ -166,7 +168,11 @@ WindowManager:
                     color: "#c244fc"
                     background_color: utils.get_color_from_hex("#3e0989")
                     background_normal: ''
-            
+                    on_release:
+                        app.root.current = "password"
+                        root.manager.transition.direction = "left"
+
+
                 Button:
                     id: btn_3
                     text: "regresar?"
@@ -178,3 +184,65 @@ WindowManager:
                     on_release:
                         app.root.current = "main"
                         root.manager.transition.direction = "right"
+
+
+<password>:
+    name: "password"
+    
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'blackomorii.jpg'
+
+  
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            markup: True
+            text: ''
+            color: "#ffffff"
+            font_size : 24
+
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+            BoxLayout:
+                orientation: "horizontal"
+                padding: 30
+                spacing: 10
+
+
+                Button:
+                    id: btn_4
+                    text: "siguiente"
+                    font_size: "18"
+                    size_hint : 0.15, 0.15
+                    color: "#ffffff"
+                    background_color: utils.get_color_from_hex("#000000")
+                    background_normal: ''
+                    on_release:
+                        app.root.current = "correcto"
+                        root.manager.transition.direction = "left"
+
+
+
+
+
+
+
+<correcto>:
+    name: "correcto"
+    
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'correctomorii.jpg'
+
+  
+
+    GridLayout:
+        cols: 1
