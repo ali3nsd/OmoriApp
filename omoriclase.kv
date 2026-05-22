@@ -1,9 +1,5 @@
 #:import utils kivy.utils
 
-
-
-
-
 WindowManager:
     #Inicio:
     #pantalla1:
@@ -27,7 +23,7 @@ WindowManager:
 
 <Fade>:
     name: "fade"
-    
+
     Button:
         id: btn_prueba
         text: "prueba"
@@ -37,29 +33,17 @@ WindowManager:
         color: "#8a63ff"
         background_color: 1,1,1, root.opacidad
         on_press: root.fade()
-        
-
-
-
-
-
-
-
 
 <Inicio>:
     name: "main"
     
-
-
-
-
     canvas.before:
         Rectangle:
             pos: self.pos
             size: self.size
             source: 'fondo_omorii.jpg'   
 
-    
+
     GridLayout:
         cols: 1
 
@@ -79,12 +63,9 @@ WindowManager:
                 size_hint: None, None
                 size: 300,300
 
-            
-            
         AnchorLayout:
             anchor_x: 'center'
             anchor_y: 'center'
-            
 
             Button:
                 id: btn_inicio
@@ -144,7 +125,7 @@ WindowManager:
 
 <pantalla2>:
     name: "pantalla2"
-    
+   
     canvas.before:
         Rectangle:
             pos: self.pos
@@ -197,14 +178,12 @@ WindowManager:
 
 <password>:
     name: "password"
-    
+
     canvas.before:
         Rectangle:
             pos: self.pos
             size: self.size
             source: 'blackomorii.jpg'
-
-  
 
     GridLayout:
         cols: 1
@@ -236,22 +215,14 @@ WindowManager:
                         app.root.current = "correcto"
                         root.manager.transition.direction = "left"
 
-
-
-
-
-
-
 <correcto>:
     name: "correcto"
-    
+
     canvas.before:
         Rectangle:
             pos: self.pos
             size: self.size
             source: 'correctomorii.jpg'
-
-  
 
     GridLayout:
         cols: 1
