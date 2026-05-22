@@ -5,12 +5,12 @@
 
 
 WindowManager:
-    Inicio:
-    pantalla1:
-    pantalla2:
-    password:
-    correcto:
-
+    #Inicio:
+    #pantalla1:
+    #pantalla2:
+    #password:
+    #correcto:
+    Fade:
 
 <Background_label@Label>:
     background_color: 0,0,0,0
@@ -23,6 +23,22 @@ WindowManager:
         Rectangle:
             size: self.size
             pos: self.pos
+
+
+<Fade>:
+    name: "fade"
+    
+    Button:
+        id: btn_prueba
+        text: "prueba"
+        font_size: "18"
+        size: (150,150)
+        size_hint: None, 0.25
+        color: "#8a63ff"
+        background_color: 1,1,1, root.opacidad
+        on_press: root.fade()
+        
+
 
 
 
@@ -57,17 +73,13 @@ WindowManager:
             anchor_x: 'center'
             anchor_y: 'center'
 
-            Background_label:
+            Image:
+                source: "startest.gif"
+                anim_delay: 0.1
+                size_hint: None, None
+                size: 300,300
 
-                text: "etiquetaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                color: "#6622ae"
-                background_color: utils.get_color_from_hex("#8154c1")
-
-
-
-
-
-        
+            
             
         AnchorLayout:
             anchor_x: 'center'
@@ -168,10 +180,7 @@ WindowManager:
                     color: "#c244fc"
                     background_color: utils.get_color_from_hex("#3e0989")
                     background_normal: ''
-                    on_release:
-                        app.root.current = "password"
-                        root.manager.transition.direction = "left"
-
+                    on_press: root.clicks()
 
                 Button:
                     id: btn_3

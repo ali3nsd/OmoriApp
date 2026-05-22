@@ -11,13 +11,34 @@ class pantalla1(Screen):
     pass
 
 class pantalla2(Screen):
-    pass
+    i = 0
+    limite = False
+
+    def clicks(self):
+        self.i += 1
+        print(self.i)
+        if self.i == 5:
+            print("llegaste a 5 clicks")
+            limite = True
+            self.manager.current = "password"
+            self.manager.transition.direction = "right"
 
 class password(Screen):
     pass
 
 class correcto(Screen):
     pass
+
+
+class Fade(Screen):
+    opacidad = 1
+    def fade(self):
+
+        for i in range(0,1):
+            self.opacidad -= 0.1
+            print("opacidad =", self.opacidad)
+
+ 
 
 class WindowManager(ScreenManager):
     pass
