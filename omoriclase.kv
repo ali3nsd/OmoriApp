@@ -1,12 +1,16 @@
 #:import utils kivy.utils
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
 
 WindowManager:
-    #Inicio:
-    #pantalla1:
-    #pantalla2:
-    #password:
-    #correcto:
-    Fade:
+    transition: FadeTransition()
+    duration: 0.40
+    Inicio:
+    pantalla1:
+    pantalla2:
+    password:
+    correcto:
+    error:
+    
 
 <Background_label@Label>:
     background_color: 0,0,0,0
@@ -21,58 +25,46 @@ WindowManager:
             pos: self.pos
 
 
-<Fade>:
-    name: "fade"
 
-    Button:
-        id: btn_prueba
-        text: "prueba"
-        font_size: "18"
-        size: (150,150)
-        size_hint: None, 0.25
-        color: "#8a63ff"
-        background_color: 1,1,1, root.opacidad
-        on_press: root.fade()
 
 <Inicio>:
     name: "main"
     
+
     canvas.before:
         Rectangle:
             pos: self.pos
             size: self.size
-            source: 'fondo_omorii.jpg'   
+            source: 'fondo_omorii.jpg'
 
 
-    GridLayout:
-        cols: 1
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 0
 
-        Label:
-            markup: True
-            text: "inicio jwjjeje"
-            color: "#cfa8ff"
-            font_size : 18
 
         AnchorLayout:
             anchor_x: 'center'
             anchor_y: 'center'
 
-            Image:
-                source: "startest.gif"
-                anim_delay: 0.1
-                size_hint: None, None
-                size: 300,300
 
+            #Video:
+                #size_hint: None, None
+                #size : (600, 400)
+                #source: "kangelgif.gif"
+                #state: 'play'
+                #options: {'allow_stretch': True,'eos': 'loop'}
+                
         AnchorLayout:
             anchor_x: 'center'
-            anchor_y: 'center'
+            anchor_y: 'bottom'
 
             Button:
                 id: btn_inicio
                 text: "ir a pantalla 1"
                 font_size: "18"
-                size: (150, 150)
-                size_hint : None, 0.20
+                size: (200,70)
+                size_hint : None, None
                 color: "#8a63ff"
                 background_color: utils.get_color_from_hex("#3e0989")
                 background_normal: ''
@@ -82,6 +74,9 @@ WindowManager:
                     root.manager.transition.direction = "left"
 
 
+
+
+        
 
 
 
@@ -185,36 +180,54 @@ WindowManager:
             size: self.size
             source: 'blackomorii.jpg'
 
-    GridLayout:
-        cols: 1
 
-        Label:
-            markup: True
-            text: ''
-            color: "#ffffff"
-            font_size : 24
+        
+    BoxLayout:
+        orientation: "vertical"
+        padding: 30
+        spacing: 10
 
         AnchorLayout:
             anchor_x: 'center'
             anchor_y: 'center'
-            BoxLayout:
-                orientation: "horizontal"
-                padding: 30
-                spacing: 10
 
 
-                Button:
-                    id: btn_4
-                    text: "siguiente"
-                    font_size: "18"
-                    size_hint : 0.15, 0.15
-                    color: "#ffffff"
-                    background_color: utils.get_color_from_hex("#000000")
-                    background_normal: ''
-                    on_release:
-                        app.root.current = "correcto"
-                        root.manager.transition.direction = "left"
+            Label:
+                id: label_password
+                markup: True
+                text: "Ingresa el código"
+                color: "#ffffff"
+                font_size : 24
 
+
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+
+            TextInput:
+                id: input_password
+                text: ""
+                size_hint: 0.3, 0.3
+                multiline: False
+                password: False
+                font_size: 19
+
+
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+            
+            Button:
+                id: btn_4
+                text: "siguiente"
+                font_size: "18"
+                size_hint : 0.15, 0.15
+                color: "#ffffff"
+                background_color: utils.get_color_from_hex("#000000")
+                background_normal: ''
+                on_press:
+                    root.check(label_password, input_password)
+                    input_password.text = " "
 <correcto>:
     name: "correcto"
 
@@ -223,6 +236,19 @@ WindowManager:
             pos: self.pos
             size: self.size
             source: 'correctomorii.jpg'
+
+    GridLayout:
+        cols: 1
+
+
+<error>:
+    name: "error"
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'omorii_incorrecto.jpg'
 
     GridLayout:
         cols: 1
